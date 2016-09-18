@@ -4,16 +4,42 @@ import socket
 import Draft
 import RoboGrimConfig
 import GrimCommunicator
+import MessageHandler
 
-
-RATE = (20 / 30)
 CHAT_MSG = re.compile(r"^:\w+!\w+@\w+\.tmi\.twitch\.tv PRIVMSG #\w+ :")
 
 
 def main_loop():
-    active_module = "none"
 
-    message = ""
+    communicator = GrimCommunicator.GrimCommunicator()
+    handler = MessageHandler.MessageHandler(communicator)
+
+    while communicator.connected:
+
+        response = communicator.get_next_message()
+
+        if response == "PING :tmi.twitch.tv\r\n":
+            communicator.pong_server()
+            continue
+        else:
+            handler.handle_response(response)
+
+        print(response)
+
+
+'''
+        if response == "PING :tmi.twitch.tv\r\n":
+            ourSocket.send("PONG :tmi.twitch.tv\r\n".encode("utf-8"))
+            print("PONG")
+        else:
+            username = re.search(r"\w+", response).group(0)
+            message = CHAT_MSG.sub("", response)
+
+        sleep(1/RoboGrimConfig.RATE)
+        communicator.chat(communicator, "test")
+'''
+
+'''
 
     while connected:
         response = ourSocket.recv(1024).decode("utf-8")
@@ -47,7 +73,7 @@ def main_loop():
 
 def chat(msg):
     ourSocket.send("PRIVMSG {} :{}".format(RoboGrimConfig.CHAN, msg).encode())
-
+'''
 if __name__ == "__main__":
     main_loop()
 
