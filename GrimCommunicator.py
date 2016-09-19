@@ -14,8 +14,8 @@ class GrimCommunicator:
             self.active_socket.send("PASS {}\r\n".format(RoboGrimConfig.PASS).encode("utf-8"))
             self.active_socket.send("NICK {}\r\n".format(RoboGrimConfig.NICK).encode("utf-8"))
             self.active_socket.send("JOIN {}\r\n".format(RoboGrimConfig.CHAN).encode("utf-8"))
+            self.active_socket.setblocking(0)
             self.connected = True
-            self.active_socket.send("PRIVMSG {} :{}".format(RoboGrimConfig.CHAN, "connected!").encode())
             print("Successfully Connected")
         except Exception as exception:
             print(str(exception))
@@ -26,9 +26,17 @@ class GrimCommunicator:
         print("PONG")
 
     def chat(self, message):
-        self.active_socket.send("PRIVMSG {} :{}".format(RoboGrimConfig.CHAN, message).encode("utf-8"))
+        self.active_socket.send("PRIVMSG {} :{}".format(RoboGrimConfig.CHAN, str(message) + "\r\n").encode("utf-8"))
 
     def get_next_message(self):
-        return self.active_socket.recv(1024).decode("utf-8")
+        next_message = None
+        try:
+            next_message = self.active_socket.recv(1024).decode("utf-8")
+        except Exception as exception:
+            # do nothing if there's no message :\
+            pass
+        return next_message
+
+
 
 
