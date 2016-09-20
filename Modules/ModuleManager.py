@@ -18,8 +18,8 @@ class ModuleManager:
         if self.active_module is None:
             return
 
-        status = self.active_module.tick()
-        if not status:
+        should_continue = self.active_module.tick()
+        if should_continue is False:
             self.stop_module()
 
     def input(self, username, message):
