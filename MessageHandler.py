@@ -2,6 +2,7 @@ import re
 import RoboGrimConfig
 import Modules.Draft
 
+from PIL import Image
 
 class MessageHandler:
 
@@ -23,6 +24,12 @@ class MessageHandler:
         print('killing draft')
         self.module_manager.stop_module()
 
+    def init_overlay(self, arguments):
+        x = int(arguments[0])
+        y = int(arguments[1])
+        im = Image.new("RGBA", (x, y))
+        im.save("overlay.png")
+
     command_map = {
         '!test': test_message
     }
@@ -33,7 +40,8 @@ class MessageHandler:
 
     king_command_map = {
         '!startdraft': start_draft,
-        '!stopdraft': stop_draft
+        '!stopdraft': stop_draft,
+        '!initoverlay': init_overlay
     }
 
     def handle_response(self, response):
