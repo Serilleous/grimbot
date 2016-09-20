@@ -35,6 +35,8 @@ class GrimCommunicator:
         except Exception as exception:
             # do nothing if there's no message :\
             pass
+        if next_message == ":tmi.twitch.tv NOTICE * :Login authentication failed\r\n":
+            self.connected = False
         return next_message
 
 
