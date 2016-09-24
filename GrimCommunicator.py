@@ -1,11 +1,15 @@
 import socket
 import RoboGrimConfig
+import configparser
+import time
 
 
 class GrimCommunicator:
 
     active_socket = None
     connected = None
+    config = None
+    last_chat_time = 0
 
     def __init__(self):
         try:
@@ -20,13 +24,17 @@ class GrimCommunicator:
         except Exception as exception:
             print(str(exception))
             self.connected = False
+        self.config = configparser.ConfigParser()
 
     def pong_server(self):
         self.active_socket.send("PONG :tmi.twitch.tv\r\n".encode("utf-8"))
         print("PONG")
 
     def chat(self, message):
-        self.active_socket.send("PRIVMSG {} :{}".format(RoboGrimConfig.CHAN, str(message) + "\r\n").encode("utf-8"))
+        self.config.read("GrimBot.ini")
+        delay = int(self.config.get("General", "MinimumMessageDelay"))
+        if time.time() - self.last_chat_time > delay:
+            self.active_socket.send("PRIVMSG {} :{}".format(RoboGrimConfig.CHAN, str(message) + "\r\n").encode("utf-8"))
 
     def get_next_message(self):
         next_message = None

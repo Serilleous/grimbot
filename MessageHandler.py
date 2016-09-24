@@ -1,20 +1,25 @@
 import re
 import RoboGrimConfig
 import Modules.Draft
+import GrimCommunicator
 
 from PIL import Image
+
 
 class MessageHandler:
 
     communicator = None
     module_manager = None
 
-    def __init__(self, communicator, module_manager):
+    def __init__(self, communicator: GrimCommunicator, module_manager):
         self.communicator = communicator
         self.module_manager = module_manager
 
     def test_message(self, arguments):
         self.communicator.chat("tested!")
+
+    def tts(self, arguments):
+        self.communicator.chat("Because he works in a computer lab Grimfan uses text to speech to communicate out of respect for his co-workers and students that use the lab as a resource.\r\n")
 
     def start_draft(self, arguments):
         self.communicator.chat("Starting draft")
@@ -25,13 +30,22 @@ class MessageHandler:
         self.module_manager.stop_module()
 
     def init_overlay(self, arguments):
-        x = int(arguments[0])
-        y = int(arguments[1])
+        old_overlay = None
+        try:
+            old_overlay = Image.open(RoboGrimConfig.OVERLAY_FILE)
+        except Exception as exception:
+            pass
+        x = old_overlay.width if old_overlay is not None else 50
+        y = old_overlay.height if old_overlay is not None else 50
+        if len(arguments) > 0:
+            x = int(arguments[0]) if len(arguments) > 0 and arguments[0] is not None else x
+            y = int(arguments[1]) if len(arguments) > 1 and arguments[1] is not None else y
         im = Image.new("RGBA", (x, y))
-        im.save("overlay.png")
+        im.save(RoboGrimConfig.OVERLAY_FILE)
 
     command_map = {
-        '!test': test_message
+        #'!test': test_message,
+        '!tts': tts
     }
 
     mod_command_map = {
