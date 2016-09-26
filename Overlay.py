@@ -4,7 +4,7 @@ from tkinter import *
 from math import *
 from configparser import ConfigParser
 
-KEY_COLOR = "#000000"
+KEY_COLOR = "#f0f0f0"
 
 class Overlay:
     width = None
@@ -54,7 +54,7 @@ class HideableOverlay(Overlay):
 class CountdownTimer(HideableOverlay):
     start_time = None
     seconds = None
-    COLOR = "red"
+    COLOR = "#b4c9de"
 
     def __init__(self):
         Overlay.__init__(self, "Timer", 500, 500)
@@ -89,7 +89,7 @@ class CountdownTimer(HideableOverlay):
 class Label(HideableOverlay):
 
     text = None
-    COLOR = "red"
+    COLOR = "#b4c9de"
     font = "Arial"
     font_size=None
 
@@ -126,7 +126,7 @@ class TextGrid(HideableOverlay):
     COLOR = "red"
     font = "Arial"
 
-    def __init__(self, title, font_size=50, color="red"):
+    def __init__(self, title, font_size=30, color="#b4c9de"):
         HideableOverlay.__init__(self, color)
 
         config = ConfigParser()

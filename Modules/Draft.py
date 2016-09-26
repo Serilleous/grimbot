@@ -1,22 +1,16 @@
 # A module to run us a draft!
 
 import RoboGrimConfig
-import RoboGrim
 import time
-import re
-import PIL
-import sys
 import pyautogui
 
 import Overlay
 
 from configparser import ConfigParser
-from tkinter import *
-from PIL import Image, ImageDraw
 
 CONFIG_SECTION = "Draft"
 
-VOTE_DURATION = None
+VOTE_DURATION_PER_CARD = None
 CLEANUP_DURATION = None
 
 MODE_ORDER = ["!", "@", "#"]
@@ -45,8 +39,8 @@ class Draft:
         # update globals from config
         config = ConfigParser()
         config.read(RoboGrimConfig.CONFIG)
-        global VOTE_DURATION
-        VOTE_DURATION = float(config.get(CONFIG_SECTION, "MainPhaseTime")) + 0.99
+        global VOTE_DURATION_PER_CARD
+        VOTE_DURATION_PER_CARD = float(config.get(CONFIG_SECTION, "MainPhaseTimePerCArd"))
         global CLEANUP_DURATION
         CLEANUP_DURATION = float(config.get(CONFIG_SECTION, "CleanupPhaseTime")) + 0.99
 
@@ -142,6 +136,11 @@ class DraftState:
 
         return winners
 
+    def update_vote_counts(self):
+        new_vote_text = []
+        for i in range(len(self.votes)):
+            new_vote_text.append(str(len(self.votes[i])) if i in self.valid_votes else "")
+        self.vote_count.set_text(new_vote_text)
 
 class MainPhase:
     start_time = None
@@ -150,16 +149,14 @@ class MainPhase:
     def __init__(self, draft_state: DraftState=None):
         draft_state = draft_state if draft_state is not None else DraftState()
 
-        if draft_state.pack > DEFAULT_PACKS_IN_DRAFT:
-            #end the draft
-            return False, None
-
         self.start_time = time.time()
+        self.vote_duration = max((DEFAULT_CARDS_IN_PACK - draft_state.pick), 5) * VOTE_DURATION_PER_CARD
 
-        draft_state.timer.set_timer(VOTE_DURATION)
+        draft_state.timer.set_timer(self.vote_duration)
         draft_state.timer_label.set_text("Vote!", 300)
         draft_state.increment_mode()
         draft_state.reset_votes()
+        draft_state.update_vote_counts()
         self.draft_state = draft_state
 
 
@@ -173,7 +170,7 @@ class MainPhase:
         print("Starting main voting phase.  Mode: " + draft_state.mode)
 
     def tick(self):
-        if (time.time() - self.start_time) > VOTE_DURATION or self.draft_state.skip_to_count:
+        if (time.time() - self.start_time) > self.vote_duration or self.draft_state.skip_to_count:
             print("Main vote phase ending.")
             return True, CleanupPhase(self.draft_state)
         return True, None
@@ -191,8 +188,11 @@ class CleanupPhase:
         print("Starting vote cleanup phase.")
         self.start_time = time.time()
         self.draft_state = draft_state
-        self.draft_state.timer.set_timer(CLEANUP_DURATION)
-        self.draft_state.timer_label.set_text("Counting\n  Votes...", 150)
+        if draft_state.pick != DEFAULT_CARDS_IN_PACK:
+            self.draft_state.timer.set_timer(CLEANUP_DURATION)
+            self.draft_state.timer_label.set_text("Counting\n  Votes...", 150)
+        else:
+            self.draft_state.skip_to_count = True
 
     def tick(self):
         if (time.time() - self.start_time) > CLEANUP_DURATION or self.draft_state.skip_to_count:
@@ -222,7 +222,6 @@ class PickPhase:
 
     mouse_click_delay = 1
     start_time = None
-    mouse_moved = False
 
     def __init__(self, winner, draft_state):
         self.start_time = time.time()
@@ -245,13 +244,23 @@ class PickPhase:
     def tick(self):
         x, y = self.winner_position
 
-        if not self.mouse_moved:
-            pyautogui.moveTo(x, y)
-            self.mouse_moved = True
-
         if time.time() - self.start_time > self.mouse_click_delay:
+            pre_x, pre_y = pyautogui.position()
+
+            try:
+                pyautogui.moveTo(x, y)
+            except Exception as exception:
+                # swallow that error that always happens for some reason :(
+                pass
+            time.sleep(1)
             try:
                 pyautogui.click(x, y)
+            except Exception as exception:
+                # swallow that error that always happens for some reason :(
+                pass
+            time.sleep(1)
+            try:
+                pyautogui.moveTo(pre_x, pre_y)
             except Exception as exception:
                 # swallow that error that always happens for some reason :(
                 pass
@@ -259,8 +268,16 @@ class PickPhase:
             self.draft_state.reset_valid_votes()
             return True, MainPhase(self.draft_state)
 
+        if self.draft_state.pack > DEFAULT_PACKS_IN_DRAFT:
+            # end the draft
+            return False, None
+
         return True, None
 
+
+    def input(self, username, message):
+        # needs to exist to prevent crashes
+        pass
 
 def parse_vote(user, vote, draft_state: DraftState):
     # get vote symbol
@@ -294,8 +311,4 @@ def tally_vote(user, symbol, vote, draft_state: DraftState):
     elif symbol == draft_state.mode and not any(user in sublist for sublist in draft_state.votes):
         draft_state.votes[vote].append(user)
 
-    new_vote_text = []
-    for vote in draft_state.votes:
-        new_vote_text.append(str(len(vote)))
-
-    draft_state.vote_count.set_text(new_vote_text)
+    draft_state.update_vote_counts()

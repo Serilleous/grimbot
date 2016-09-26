@@ -92,8 +92,12 @@ class MessageHandler:
 
     # Parse a response, handling empties and returning none if no matches
     def parse_response(self, expression, response):
-        parsed_response = re.search(expression, response)
-
+        parsed_response = None
+        try:
+            parsed_response = re.search(expression, response)
+        except Exception as exception:
+            #swallow it, because passing bytes to regex breaks things
+            pass
         if parsed_response is not None:
             return parsed_response.group(0)
         return None
