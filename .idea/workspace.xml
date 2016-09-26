@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="022c25a9-da67-4c41-9aea-6c26a92483d8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GrimBot.ini" afterPath="$PROJECT_DIR$/GrimBot.ini" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MessageHandler.py" afterPath="$PROJECT_DIR$/MessageHandler.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modules/Draft.py" afterPath="$PROJECT_DIR$/Modules/Draft.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Overlay.py" afterPath="$PROJECT_DIR$/Overlay.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RoboGrimConfig.py" afterPath="$PROJECT_DIR$/RoboGrimConfig.py" />
     </list>
     <ignored path="Grim_Bot.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,7 +39,7 @@
           <file leaf-file-name="RoboGrim.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/RoboGrim.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="357">
+                <state relative-caret-position="306">
                   <caret line="24" column="49" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
@@ -52,11 +48,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="RoboGrimConfig.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="RoboGrimConfig.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/RoboGrimConfig.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+                <state relative-caret-position="238">
+                  <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
                   <folding />
                 </state>
               </provider>
@@ -72,7 +68,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Draft.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Draft.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Modules/Draft.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="165">
@@ -87,7 +83,7 @@
           <file leaf-file-name="mouselocation.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/mouselocation.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
+                <state relative-caret-position="187">
                   <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="13" selection-end-column="25" />
                   <folding>
                     <element signature="e#0#21#0" expanded="true" />
@@ -125,7 +121,7 @@
           <file leaf-file-name="MessageHandler.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/MessageHandler.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="283">
+                <state relative-caret-position="1258">
                   <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
@@ -137,7 +133,7 @@
           <file leaf-file-name="GrimCommunicator.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/GrimCommunicator.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="408">
+                <state relative-caret-position="357">
                   <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
                   <folding>
                     <element signature="e#0#13#0" expanded="true" />
@@ -182,9 +178,9 @@
         <option value="$PROJECT_DIR$/Overlays/OverlayWriter.py" />
         <option value="$PROJECT_DIR$/RoboGrim.py" />
         <option value="$PROJECT_DIR$/MessageHandler.py" />
-        <option value="$PROJECT_DIR$/RoboGrimConfig.py" />
         <option value="$PROJECT_DIR$/Modules/Draft.py" />
         <option value="$PROJECT_DIR$/Overlay.py" />
+        <option value="$PROJECT_DIR$/RoboGrimConfig.py" />
       </list>
     </option>
   </component>
@@ -225,6 +221,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -259,8 +257,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -648,20 +644,20 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826087" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35217392" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2652174" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35217392" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826087" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2652174" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -945,7 +941,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
           <caret line="298" column="0" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -953,13 +948,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
           <caret line="695" column="0" selection-start-line="695" selection-start-column="0" selection-end-line="695" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GrimCommunicator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
+        <state relative-caret-position="357">
           <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
@@ -967,41 +961,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Overlays/DraftOverlay">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Overlays/OverlayComponents.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Overlays/DraftOverlay" />
+    <entry file="file://$PROJECT_DIR$/Overlays/OverlayComponents.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35/Lib/tkinter/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="2343" column="0" selection-start-line="2343" selection-start-column="0" selection-end-line="2343" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Overlays/OverlayWriter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Overlays/OverlayWriter.py" />
     <entry file="file://$PROJECT_DIR$/mouselocation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
+        <state relative-caret-position="187">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="13" selection-end-column="25" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
@@ -1021,7 +993,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="359">
           <caret line="434" column="7" selection-start-line="433" selection-start-column="10" selection-end-line="434" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1029,7 +1000,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-7954">
           <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1045,21 +1015,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="503">
           <caret line="305" column="19" selection-start-line="305" selection-start-column="19" selection-end-line="305" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RoboGrimConfig.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RoboGrim.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
+        <state relative-caret-position="306">
           <caret line="24" column="49" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
@@ -1069,7 +1030,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MessageHandler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
+        <state relative-caret-position="1258">
           <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
@@ -1094,6 +1055,14 @@
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RoboGrimConfig.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>

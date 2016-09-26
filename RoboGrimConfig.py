@@ -6,7 +6,7 @@ PASS = "oauth:sqqcbzr7f676z9wu7jvqaqr2wlkn7e"
 '''
 NICK = "grimrobot"
 PASS = "oauth:pjrkw7cg7t7ghuol2dn2buxykoqggc"
-CHAN = "#serilleous"
+CHAN = "#grimfan"
 RATE = 60  # times per second main loop should run.
 CONFIG = "GrimBot.ini"
 
