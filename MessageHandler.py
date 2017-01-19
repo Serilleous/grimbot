@@ -1,5 +1,6 @@
 import re
 import RoboGrimConfig
+import Modules.CopyChat
 import Modules.Draft
 import GrimCommunicator
 
@@ -14,6 +15,8 @@ class MessageHandler:
     def __init__(self, communicator: GrimCommunicator, module_manager):
         self.communicator = communicator
         self.module_manager = module_manager
+        self.module_manager.start_module(Modules.CopyChat.CopyChat(GrimCommunicator))
+
 
     def test_message(self, arguments):
         self.communicator.chat("tested!")
@@ -44,8 +47,6 @@ class MessageHandler:
         im.save(RoboGrimConfig.OVERLAY_FILE)
 
     command_map = {
-        #'!test': test_message,
-        '!tts': tts
     }
 
     mod_command_map = {
@@ -53,9 +54,6 @@ class MessageHandler:
     }
 
     king_command_map = {
-        '!startdraft': start_draft,
-        '!stopdraft': stop_draft,
-        '!initoverlay': init_overlay
     }
 
     def handle_response(self, response):
