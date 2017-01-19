@@ -11,7 +11,8 @@ class CopyChat:
 
     def input(self, username, message):
         # Copy input to clipboard if I am grimfan
-        pyperclip.copy(message)
+        if username == "grimfan":
+            pyperclip.copy(message)
 
     def start(self):
         pass

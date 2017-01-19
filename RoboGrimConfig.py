@@ -10,7 +10,7 @@ PASS = "oauth:pjrkw7cg7t7ghuol2dn2buxykoqggc"
 NICK = "grimcopybot"
 PASS = "oauth:rws7awpf0299b4o0dkh1y3bxv610vb"
 
-CHAN = "#serilleous"
+CHAN = "#grimfan"
 RATE = 60  # times per second main loop should run.
 CONFIG = "GrimBot.ini"
 
