@@ -29,7 +29,8 @@ def main_loop():
             handler.handle_response(response)
 
         if response is not None:
-            print(response)
+            encoded_response = response.encode("utf-8")
+            print(encoded_response)
 
         module_manager.tick()
 
