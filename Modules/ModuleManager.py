@@ -1,11 +1,15 @@
 
+from Modules import PollDraft
+import PollDraftState
 
 class ModuleManager:
     active_module = None
 
-    def start_module(self, new_module):
-        self.active_module = new_module
-        self.active_module.start()
+    def __init__(self, poll_state: PollDraftState):
+        self.poll_state = poll_state
+
+    def start_poll_module(self):
+        self.start_module(PollDraft.PollDraft(self.poll_state))
 
     def start_module(self, new_module):
         self.active_module = new_module

@@ -2,6 +2,8 @@ import re
 import RoboGrimConfig
 import Modules.Draft
 import GrimCommunicator
+from configparser import ConfigParser
+from Modules import PollDraft
 
 from PIL import Image
 
@@ -11,9 +13,16 @@ class MessageHandler:
     communicator = None
     module_manager = None
 
-    def __init__(self, communicator: GrimCommunicator, module_manager):
+    def __init__(self, communicator: GrimCommunicator, module_manager, poll_state):
         self.communicator = communicator
         self.module_manager = module_manager
+        self.config = ConfigParser()
+        self.module_manager.start_module(PollDraft.PollDraft(self.communicator, poll_state))
+
+
+    def start_poll_draft(self):
+        self.module_manager.start_poll_draft()
+
 
     def test_message(self, arguments):
         self.communicator.chat("tested!")
@@ -28,6 +37,9 @@ class MessageHandler:
     def stop_draft(self, arguments):
         print('killing draft')
         self.module_manager.stop_module()
+
+    # def start_poll_draft(self, arguments):
+    #     self.module_manager.start_module(Modules.PollDraft.PollDraft(self.communicator, arguments))
 
     def init_overlay(self, arguments):
         old_overlay = None
@@ -53,9 +65,10 @@ class MessageHandler:
     }
 
     king_command_map = {
-        '!startdraft': start_draft,
-        '!stopdraft': stop_draft,
-        '!initoverlay': init_overlay
+      #  '!startdraft': start_draft,
+       # '!stopdraft': stop_draft,
+       #'!initoverlay': init_overlay,
+        # '!polldraft': start_poll_draft,
     }
 
     def handle_response(self, response):
@@ -68,10 +81,12 @@ class MessageHandler:
         if len(parsedMessage) > 1:
             junk, *arguments = parsedMessage
 
-
+        self.config.read(RoboGrimConfig.CONFIG)
+        streamer_name = self.config.get("General", "Streamer")
+        streamer_name = str.lower(streamer_name)
         # figure out user authorization level
         is_mod = username in RoboGrimConfig.MODS
-        is_king = username == RoboGrimConfig.ME
+        is_king = username == streamer_name
 
         # figure out which command to run
         command = None

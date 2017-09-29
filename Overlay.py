@@ -187,3 +187,11 @@ class TextGrid(HideableOverlay):
             self.canvas.coords(element,
                                column_offset + column_spacing * ((element - 1) % 4),
                                row_offset + row_spacing * int((element - 1) / 4))
+
+class PollControlWindow(HideableOverlay):
+    def __init__(self):
+        Overlay.__init__(self, "Draft Control", 600, 600)
+
+
+class PollGraphWindow(HideableOverlay):
+    pass

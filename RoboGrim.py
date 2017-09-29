@@ -5,20 +5,27 @@ import MessageHandler
 import RoboGrimConfig
 import Modules.ModuleManager
 import time
+import GUI.PrimaryGUI
+import PollDraftState
+
+from tkinter import *
 
 CHAT_MSG = re.compile(r"^:\w+!\w+@\w+\.tmi\.twitch\.tv PRIVMSG #\w+ :")
 
+# todo:  make this less shitty (more modular)
+poll_state = None
 
-def main_loop():
 
+def main_loop(root):
     communicator = GrimCommunicator.GrimCommunicator()
-    module_manager = Modules.ModuleManager.ModuleManager()
-    handler = MessageHandler.MessageHandler(communicator, module_manager)
+    module_manager = Modules.ModuleManager.ModuleManager(poll_state)
+    handler = MessageHandler.MessageHandler(communicator, module_manager, poll_state)
 
-
-    active_module = None
 
     while communicator.connected:
+
+        root.update_idletasks()
+        root.update()
 
         response = communicator.get_next_message()
 
@@ -36,6 +43,10 @@ def main_loop():
 
         time.sleep(1 / RoboGrimConfig.RATE)
 
+
 if __name__ == "__main__":
-    main_loop()
+    root = Tk()
+    poll_state = PollDraftState.PollState()
+    gui = GUI.PrimaryGUI.PrimaryGUI(root, poll_state)
+    main_loop(root)
 

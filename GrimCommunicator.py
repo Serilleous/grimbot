@@ -12,19 +12,21 @@ class GrimCommunicator:
     last_chat_time = 0
 
     def __init__(self):
+        self.config = configparser.ConfigParser()
+        self.config.read(RoboGrimConfig.CONFIG)
+        channel_name = self.config.get("General", "ChannelName")
         try:
             self.active_socket = socket.socket()
             self.active_socket.connect((RoboGrimConfig.HOST, RoboGrimConfig.PORT))
             self.active_socket.send("PASS {}\r\n".format(RoboGrimConfig.PASS).encode("utf-8"))
             self.active_socket.send("NICK {}\r\n".format(RoboGrimConfig.NICK).encode("utf-8"))
-            self.active_socket.send("JOIN {}\r\n".format(RoboGrimConfig.CHAN).encode("utf-8"))
+            self.active_socket.send("JOIN {}\r\n".format(channel_name).encode("utf-8"))
             self.active_socket.setblocking(0)
             self.connected = True
             print("Successfully Connected")
         except Exception as exception:
             print(str(exception))
             self.connected = False
-        self.config = configparser.ConfigParser()
 
     def pong_server(self):
         self.active_socket.send("PONG :tmi.twitch.tv\r\n".encode("utf-8"))
@@ -33,8 +35,9 @@ class GrimCommunicator:
     def chat(self, message):
         self.config.read("GrimBot.ini")
         delay = int(self.config.get("General", "MinimumMessageDelay"))
+        channel_name = self.config.get('General', 'ChannelName')
         if time.time() - self.last_chat_time > delay:
-            self.active_socket.send("PRIVMSG {} :{}".format(RoboGrimConfig.CHAN, str(message) + "\r\n").encode("utf-8"))
+            self.active_socket.send("PRIVMSG {} :{}".format(channel_name, str(message) + "\r\n").encode("utf-8"))
 
     def get_next_message(self):
         next_message = None
