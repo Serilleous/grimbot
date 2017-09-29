@@ -15,3 +15,7 @@ Dependancies:
 Pillow 3.3.1 - image tools.  use the command Pip install Pillow
 Pyautogui - clicking on stuff
 ConfigParser - pip install configparser
+
+Build it:
+use pyinstaller --onefile --windowed RoboGrim.py
+make sure you have 64 bit python installed and in the path, because pyinstaller doesn't like 32bit

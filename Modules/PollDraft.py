@@ -1,6 +1,8 @@
 import PollDraftState
 import GrimCommunicator
 from tkinter import IntVar
+from configparser import ConfigParser
+import RoboGrimConfig
 
 
 class PollDraft:
@@ -61,8 +63,12 @@ class PollDraftActive(PollDraftMode):
 
     def __init__(self, state: PollDraftState, communicator):
         super(PollDraftActive, self).__init__(state, communicator)
+
+        config = ConfigParser()
+        config.read(RoboGrimConfig.CONFIG)
+        message = config.get('Poll',"PollStartingMessage")
         self.state.reset_vote_tracking()
-        self.communicator.chat("Draft poll starting, Valid choices are: " + ''.join(str(e) + ' ' for e in self.state.get_valid_votes()))
+        self.communicator.chat(message + ''.join(str(e) + ' ' for e in self.state.get_valid_votes()))
 
 
     def tick(self):

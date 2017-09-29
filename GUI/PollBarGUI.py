@@ -14,6 +14,7 @@ class PollBarGUI:
 
         window = Toplevel(root)
         window.geometry('500x800')
+        window.title('Poll Graph')
         canvas = Canvas(window)
         canvas.pack(fill=BOTH, expand=1)
         canvas.configure(background=background_color)
