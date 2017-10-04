@@ -1,5 +1,7 @@
 # ignore overlay
 overlay.png
+#ignore pycharm stuff
+.idea/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
