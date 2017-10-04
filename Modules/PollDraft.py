@@ -64,11 +64,8 @@ class PollDraftActive(PollDraftMode):
     def __init__(self, state: PollDraftState, communicator):
         super(PollDraftActive, self).__init__(state, communicator)
 
-        config = ConfigParser()
-        config.read(RoboGrimConfig.CONFIG)
-        message = config.get('Poll',"PollStartingMessage")
-        self.state.reset_vote_tracking()
-        self.communicator.chat(message + ''.join(str(e) + ' ' for e in self.state.get_valid_votes()))
+        self.config = ConfigParser()
+        self.broadcast_next_card()
 
 
     def tick(self):
@@ -77,11 +74,11 @@ class PollDraftActive(PollDraftMode):
 
         if self.state.next_card:
             next_card(self.state)
-            self.communicator.chat("Draft poll starting, Valid choices are: " + ''.join(str(e) + ' ' for e in self.state.get_valid_votes()))
+            self.broadcast_next_card()
 
         if self.state.next_pack:
             next_pack(self.state)
-            self.communicator.chat("Draft poll starting, Valid choices are: " + ''.join(str(e) + ' ' for e in self.state.get_valid_votes()))
+            self.broadcast_next_card()
         return True, None
 
     def input(self, username, message):
@@ -95,6 +92,12 @@ class PollDraftActive(PollDraftMode):
             self.state.user_voted.append(username)
             self.state.votes[messageValue - 1] += 1
         return True, None
+
+    def broadcast_next_card(self):
+        self.config.read(RoboGrimConfig.CONFIG)
+        message = self.config.get('Poll',"PollStartingMessage")
+        self.state.reset_vote_tracking()
+        self.communicator.chat(message + ''.join(str(e) + ' ' for e in self.state.get_valid_votes()))
 
 def next_card(state):
     state.reset_vote_tracking()
